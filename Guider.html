@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <link rel="stylesheet" href="./styles.css">
+        <script>
+            let lock;
+            function isScreenLockSupported() {
+                return ('wakeLock' in navigator);
+            }
+
+            async function getScreenLock() {
+                if(isScreenLockSupported()){
+                    let screenLock;
+                    try {
+                    screenLock = await navigator.wakeLock.request('screen');
+                    } catch(err) {
+                    console.log(err.name, err.message);
+                    }
+                    lock = screenLock
+                }
+            }
+
+            console.log('Hello, how is it going my dear closest friend, the inseparable and unstoppable, your subconscious talking, I always be there for you 🥰.')
+            console.log('')
+            console.log('Good sleep! Dream with angels and couples ;) Acceptance is key for live :)')
+
+
+            function start_sequence(initial_wait_hours, wait_mins) {
+                initial_ms = initial_wait_hours * 60 * 60 * 1000
+                ms = wait_mins * 60 * 1000
+                console.log('initial waiting')
+                setTimeout(function() {
+                    wait_and_play_loop(ms)
+                }, initial_ms)
+            }
+
+            function wait_and_play_loop(wait_ms) {
+                console.log('waiting')
+                setTimeout(function() {
+                    start_playing()
+                    wait_and_play_loop(wait_ms)
+                }, wait_ms)
+            }
+
+            function start_playing() {
+                let sound = new Audio('./Dream.m4a')
+                sound.play()       
+            }
+
+            function regular_play(ms, between_ms) {
+                console.log(console.log('waiting for ' + ms / 1000 / 60 + ' minutes, ' + ms / 1000 + ' seconds'));
+
+                setTimeout(function() {
+                    console.log('playing recording')
+                    start_playing()
+
+                    setTimeout(function() {
+                        console.log('recording probably finished')
+                        regular_play(ms, between_ms)
+                    }, between_ms)
+
+                }, ms)
+            }
+
+            function dream_inducer(initial_wait_hours, wait_between_recordings_mins, audio_estimated_duration_secs) {
+                initial_ms = initial_wait_hours * 60 * 60 * 1000
+                ms = wait_between_recordings_mins * 60 * 1000
+                between_ms = audio_estimated_duration_secs * 1000
+
+                console.log('started!')
+                setTimeout(function() {
+                    console.log('waited for ' + initial_wait_hours * 60 + ' minutes...');
+                    regular_play(ms, between_ms)
+                }, initial_ms)
+            }
+
+            function start_dream_inducer() {
+                dream_inducer(6, 10, 4)
+            }
+        </script>
+    </head>
+    <body>
+        <button onclick="start_dream_inducer()">Start</button>
+        <button onclick="getScreenLock()">Prevent screen from locking</button>
+        <!--button onclick="start_sequence(1, 10)">Start (Safe)</button-->
+    </body>
+</html>
