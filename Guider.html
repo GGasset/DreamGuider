@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        <link rel="stylesheet" href="./styles.css">
+        <!--link rel="stylesheet" href="./styles.css"-->
         <script>
             let lock;
             function isScreenLockSupported() {
@@ -20,9 +20,6 @@
                 }
             }
 
-            console.log('Hello, how is it going my dear closest friend, the inseparable and unstoppable, your subconscious talking, I always be there for you 🥰.')
-            console.log('')
-            console.log('Good sleep! Dream with angels and couples ;) Acceptance is key for live :)')
 
 
             function start_sequence(initial_wait_hours, wait_mins) {
@@ -75,12 +72,21 @@
             }
 
             function start_dream_inducer() {
-                dream_inducer(6, 10, 4)
+                alert('Hello, how is it going my dear closest friend, the inseparable and unstoppable, your subconscious talking, I always be there for you 🥰.')
+                alert('Good sleep! Dream with angels and couples ;) Acceptance is key for live :)')
+                initial_wait_hours = document.querySelector('#initial_wait_hours').value
+                wait_mins = document.querySelector('#wait_mins').value
+                dream_inducer(initial_wait_hours, wait_mins, 4)
+                return false
             }
         </script>
     </head>
     <body>
         <button onclick="start_dream_inducer()">Start</button>
+        <form>
+            <input id="initial_wait_hours" placeholder="initial wait hours" type="number" min="0">
+            <input id="wait_mins" placeholder="wait minutes" type="number" min="0.1">
+        </form>
         <button onclick="getScreenLock()">Prevent screen from locking</button>
         <!--button onclick="start_sequence(1, 10)">Start (Safe)</button-->
     </body>
